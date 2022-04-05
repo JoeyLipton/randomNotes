@@ -1,6 +1,4 @@
 ## Linux PrivEsc
----
-
 
 
 Just random priv esc tryhackme notes
