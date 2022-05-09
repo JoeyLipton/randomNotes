@@ -122,11 +122,11 @@ The Instruction Pointer ( ` EIP ` ) controls the program execution by storing a 
 When a process runs, it is typically organized in the memory as shown below.
 
 ```
-		                       Lower Memory Address
-		                                0
-		                      ______________________
-		                      |                    |
-	            Instructions  |	      .text        |
+		                    Lower Memory Address
+		                             0
+		                  ______________________
+		                  |                    |
+	            Instructions  |       .text        |
 	                          |____________________|
 	                          |                    |
 	    Initialized Variable  |       .data        |
@@ -219,7 +219,7 @@ Simple words: Since it goes from a higher memory address to a lower one, the top
 	ESP  |     A     |      /      |     A     |
 	     |-----------|     /       |-----------|
 	     |     B     |   PUSH (E)  |     B     |
-		 |-----------|             |-----------|
+             |-----------|             |-----------|
 	     |     C     |             |     C     |
 	     |-----------|             |-----------|
 	     |     D     |             |     D     |
@@ -244,12 +244,12 @@ Ending Value:
                                
 	      PUSH 1 -------------------------------\
 	        |                                   |
-		    |			 	                    | 		
+                |	                            | 		
 	        |         _____________             V             _____________
 	ESP = 0x0028FF80  |    ...    |     ESP = 0x0028FF7C  ->  |  00000001 |
 	                  |-----------|                           |-----------|
 	                  |  ..data.. |                           |  ..data.. |
-		              |-----------|                           |-----------|
+		          |-----------|                           |-----------|
 	                  |  ..data.. |                           |  ..data.. |
 	                  |-----------|                           |-----------|
 	                  |  ..data.. |                           |  ..data.. |
@@ -286,7 +286,7 @@ Ending Value:
 	     |     A     |                 |     A     | ESP + 4
 	     |-----------|                 |-----------|
 	     |     B     |                 |     B     |
-		 |-----------|                 |-----------|
+	     |-----------|                 |-----------|
 	     |     C     |                 |     C     |
 	     |-----------|                 |-----------|
 	     |     D     |                 |     D     |
@@ -313,12 +313,12 @@ Ending Value:
                                
 	      POP EAX-------------------------------\
 	        |                                   |
-		    |			 	                    | 		
+                |	 	                    | 		
 	        |         _____________             |             _____________
-  ESP = 0x0028FF7C -> |  00000001 |             |             |  00000001 |
+  ESP = 0x0028FF7C ->     |  00000001 |             |             |  00000001 |
 	                  |-----------|             V             |-----------|
 	                  |  ..data.. |     ESP = 0x0028FF80  ->  |  ..data.. |
-		              |-----------|                           |-----------|
+	                  |-----------|                           |-----------|
 	                  |  ..data.. |                           |  ..data.. |
 	                  |-----------|                           |-----------|
 	                  |  ..data.. |                           |  ..data.. |
@@ -428,8 +428,8 @@ Step 3:
 	- Here, the stack pointer is set, and a new stack frame for `b()` will be pushed to the stop of the stack.
 
 ```
-                                                       ______________
-                                                       |            |
+                                                           ______________
+                                                           |            |
 	Lower Memory                                       --------------
 	 Addresses                     ______________      | Frame for  |  
 	     ∧                         |            |      |    b()     |
@@ -454,8 +454,8 @@ Step 4:
 	- When the function completes, the stack pointer is moved up to its previous location, and the program returns to the stack frame of `a()` and continues on with the next function
 
 ```
-                                                    ______________
-                                                    |            |
+                                                        ______________
+                                                        |            |
 	Lower Memory                                    --------------
 	 Addresses                   ______________     | Frame for  |      ______________ 
 	     ∧                       |            |     |    b()     |      |            |
@@ -480,10 +480,10 @@ Step 5:
 	- The `a()` stack frame is popped, the stack pointer is reset, and it is returned to the `main()` stack frame.
 
 ```
-											______________
-						 				    |            |
-Lower Memory                                --------------
- Addresses               ______________     | Frame for  |    ______________  
+						______________
+						|            |
+Lower Memory                                    --------------
+ Addresses                   ______________     | Frame for  |    ______________  
 	 ∧                   |            |     |    b()     |    |            |  __________
 	 |                   --------------     --------------    --------------  |        |
 	 |  ______________   | Frame for  |     | Frame for  |    | Frame for  |  ----------
